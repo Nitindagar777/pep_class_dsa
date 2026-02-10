@@ -1,0 +1,46 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+void merge(int *arr, int si, int mid, int ei){
+    int i = si;
+    int j = mid+1;
+    vector<int> temp;
+    while(i <= mid && j <= ei){
+        if(arr[i] < arr[j]){
+            temp.push_back(arr[i++]);
+        }else{
+            temp.push_back(arr[j++]);
+        }
+    }
+    while(i <= mid){
+        temp.push_back(arr[i++]);
+    }
+    while(j <= ei){
+        temp.push_back(arr[j++]);
+    }
+
+    for(int i=si; i<=ei; i++){
+        arr[i] = temp[i-si];
+    }
+}
+
+void merge_sort(int *arr,int si, int ei){
+    if(si >= ei) return;
+    int mid = si + (ei - si)/2;
+    merge_sort(arr, si, mid);
+    merge_sort(arr, mid+1, ei);
+    merge(arr, si, mid, ei);
+}
+
+int main(){
+
+    int arr[] = {2,9,4,99,19,7};
+    int n = sizeof(arr) / sizeof(int);
+    merge_sort(arr,0, n-1);
+
+    for(int i=0; i<n; i++){
+        cout << arr[i]<< " ";
+    }
+
+    return 0;
+}
