@@ -1,0 +1,32 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+
+void insertion_sort(int *arr, int n){
+    
+    for(int i=1; i<n; i++){
+        int curr = arr[i];
+        int j = i - 1;
+        while(j >= 0 && arr[j] > curr){
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        arr[j + 1] = curr;
+    }
+}
+
+void print_arr(int *arr, int n){
+    for(int i=0; i<n; i++){
+        cout << arr[i] << " ";
+    }
+}
+
+int main(){
+
+    int arr[6] = {34,66,99,9,24,1};
+    int size = sizeof(arr)/sizeof(int);
+    insertion_sort(arr, size);
+    print_arr(arr, size);
+
+    return 0;
+}
