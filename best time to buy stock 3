@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int buy1 = INT_MAX, buy2 = INT_MAX;
+        int pro1 = 0, pro2 = 0;
+        for(int i: prices){
+            buy1 = min(i, buy1);
+            pro1 = max(pro1, i-buy1);
+
+            buy2 = min(i-pro1, buy2);
+            pro2 = max(pro2, i-buy2);
+        }
+        return pro2;
+    }
+};
